@@ -8,7 +8,7 @@ resource "aws_instance" "terraform-prac" {
   key_name = "rushi-rd369-london"
   vpc_security_group_ids = ["sg-00ac324807d28933a"]
   tags = {
-    Name = "terraform-prac"
+    Name = "jenkins-prac"
     env = "dev"
   }
 }
