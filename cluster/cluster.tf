@@ -14,8 +14,8 @@ resource "aws_eks_cluster" "cluster-prac" {
 
   vpc_config {
     subnet_ids = [
-      subnet-08ec71adb4fa4e9ba,
-      subnet-0acaab63286b55bf5,
+      "subnet-08ec71adb4fa4e9ba",
+      "subnet-0acaab63286b55bf5",
     ]
   }
 
