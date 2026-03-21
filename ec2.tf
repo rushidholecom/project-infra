@@ -3,9 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "ec2_tfstate_bucket" {
-  bucket = "ec2-tfstate-bucket"
-
-  
+  bucket = "ec2-tfstate-bucket-rushi"
 }
 
 resource "aws_instance" "jenkins-prac" {
