@@ -11,7 +11,7 @@ pipeline{
             steps{
                 timeout(time:15, unit:'MINUTES'){
                     sh '''terraform init \
-                        -backend-config="bucket=your-bucket" \
+                        -backend-config="bucket=ec2-tfstate-bucket-rushi" \
                         -backend-config="key=path/terraform.tfstate" \
                         -backend-config="region=eu-west-2" \
                         -input=false \
