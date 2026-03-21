@@ -5,10 +5,7 @@ provider "aws" {
 resource "aws_s3_bucket" "ec2-tfstate-bucket" {
   bucket = "ec2-tfstate"
 
-  tags = {
-    Name = "ec2-tfstate"
-    Environment = "Dev"
-  }
+  
 }
 
 resource "aws_instance" "jenkins-prac" {
