@@ -1,38 +1,48 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage('PULL'){
-            steps{
+
+    stages {
+
+        stage('PULL') {
+            steps {
                 git branch: 'main', url: 'https://github.com/rushidholecom/project-infra.git'
             }
         }
 
-        stage('BUILD'){
-            steps{
-                timeout(time:15, unit:'MINUTES'){
-                    sh '''terraform init \
+        stage('INIT & PLAN') {
+            steps {
+                timeout(time: 15, unit: 'MINUTES') {
+                    sh '''
+                        set -e
+
+                        terraform init \
                         -backend-config="bucket=ec2-tfstate-bucket-rushi" \
                         -backend-config="key=path/terraform.tfstate" \
                         -backend-config="region=eu-west-2" \
                         -input=false \
                         -migrate-state
-                          terraform plan'''
+
+                        terraform plan
+                    '''
                 }
             }
         }
 
-        stage('APPROVAL'){
-            steps{
-                timeout(time:15, unit:'MINUTES'){
-                    input 'wait for approval'
+        stage('APPROVAL') {
+            steps {
+                timeout(time: 15, unit: 'MINUTES') {
+                    input message: 'Approve Terraform Apply?'
                 }
             }
         }
 
-        stage('DEPLOY'){
-            steps{
-                timeout(time:15, unit:'MINUTES'){
-                    sh 'terraform apply --auto-approve'
+        stage('DEPLOY') {
+            steps {
+                timeout(time: 15, unit: 'MINUTES') {
+                    sh '''
+                        set -e
+                        terraform apply -auto-approve
+                    '''
                 }
             }
         }
