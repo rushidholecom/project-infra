@@ -2,6 +2,15 @@ provider "aws" {
   region = "eu-west-2"
 }
 
+resource "aws_s3_bucket" "ec2-tfstate" {
+  bucket = "ec2-tfstate"
+
+  tags = {
+    Name = "ec2-tfstate"
+    Environment = "Dev"
+  }
+}
+
 resource "aws_instance" "jenkins-prac" {
   ami = "ami-09dbc7ce74870d573"
   instance_type = "t3.micro"
