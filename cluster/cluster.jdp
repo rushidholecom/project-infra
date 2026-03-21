@@ -1,0 +1,31 @@
+pipeline{
+    agent any
+    stages{
+        stage('PULL'){
+            steps{
+                git branch: 'main', url: 'https://github.com/rushidholecom/project-infra.git'
+            }
+        }
+
+        stage('BUILD'){
+            steps{
+                sh '''cd cluster
+                terraform init
+                terraform plan'''
+            }
+        }
+
+        stage('APPROVAL'){
+            steps{
+                input 'wait for approval'
+            }
+        }
+
+        stage('DEPLOY'){
+            steps{
+                sh '''cd cluster
+                terraform plan --auto-approve'''
+            }
+        }
+    }
+}
