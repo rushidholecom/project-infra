@@ -24,7 +24,7 @@ pipeline{
         stage('DEPLOY'){
             steps{
                 sh '''cd cluster
-                terraform plan --auto-approve'''
+                terraform apply --auto-approve'''
             }
         }
     }
