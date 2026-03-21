@@ -20,8 +20,7 @@ pipeline {
                         -backend-config="key=path/terraform.tfstate" \
                         -backend-config="region=eu-west-2" \
                         -input=false \
-                        -migrate-state \
-                        -reconfigure
+                        -migrate-state 
 
                         terraform plan
                     '''
