@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "ec2-tfstate-bucket" {
-  bucket = "ec2-tfstate"
+  bucket = "ec2-tfstate-bucket"
 
   
 }
