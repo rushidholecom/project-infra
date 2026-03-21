@@ -2,9 +2,9 @@ provider "aws" {
   region = "eu-west-2"
 }
 
-resource "aws_s3_bucket" "ec2_tfstate_bucket" {
-  bucket = "ec2-tfstate-bucket-rushi"
-}
+#resource "aws_s3_bucket" "ec2_tfstate_bucket" {
+ # bucket = "ec2-tfstate-bucket-rushi"
+#}
 
 resource "aws_instance" "jenkins-prac" {
   ami = "ami-09dbc7ce74870d573"
