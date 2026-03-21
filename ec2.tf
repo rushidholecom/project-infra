@@ -15,7 +15,7 @@ resource "aws_instance" "jenkins-prac" {
     Name = "jenkins-prac"
     env = "dev"
   }
-  depends_on = [ aws_s3_bucket.ec2_tfstate_bucket ]
+  #depends_on = [ aws_s3_bucket.ec2_tfstate_bucket ]
 }
 
 terraform {
