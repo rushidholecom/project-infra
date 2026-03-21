@@ -15,4 +15,13 @@ resource "aws_instance" "jenkins-prac" {
     Name = "jenkins-prac"
     env = "dev"
   }
+  depends_on = [ aws_s3_bucket.ec2_tfstate_bucket ]
+}
+
+terraform {
+  backend "s3" {
+    bucket         = "ec2-tfstate-bucket-rushi"
+    key            = "terraform.tfstate"
+    region         = "ap-south-1"
+  }
 }
