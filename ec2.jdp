@@ -1,0 +1,35 @@
+pipeline{
+    agent any
+    stages{
+        stage('PULL'){
+            steps{
+                git branch: 'main', url: 'https://github.com/rushidholecom/project-infra.git'
+            }
+        }
+
+        stage('RUN'){
+            steps{
+                timeout(time:15 unit:MINUTES){
+                    sh '''terraform init
+                          terradorm plan'''
+                }
+            }
+        }
+
+        stage('APPROVAL'){
+            steps{
+                timeout(time:15 unit:MINUTES){
+                    input 'wait for approval'
+                }
+            }
+        }
+
+        stage('DEPLOY){
+            steps{
+                timeout(time:15 unit:MINUTES){
+                    sh 'terraform apply --auto -approve'
+                }
+            }
+        }
+    }
+}
