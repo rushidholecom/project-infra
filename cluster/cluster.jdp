@@ -23,8 +23,10 @@ pipeline{
 
         stage('DEPLOY'){
             steps{
+                timeout(time: 15, unit: 'MINUTES'){
                 sh '''cd cluster
                 terraform apply --auto-approve'''
+            }
             }
         }
     }
