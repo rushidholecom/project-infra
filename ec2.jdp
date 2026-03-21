@@ -11,7 +11,7 @@ pipeline{
             steps{
                 timeout(time:15, unit:'MINUTES'){
                     sh '''terraform init
-                          terradorm plan'''
+                          terraform plan'''
                 }
             }
         }
