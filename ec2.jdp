@@ -7,10 +7,10 @@ pipeline{
             }
         }
 
-        stage('RUN'){
+        stage('BUILD'){
             steps{
                 timeout(time:15, unit:'MINUTES'){
-                    sh '''terraform init
+                    sh '''terraform init -input=false'
                           terraform plan'''
                 }
             }
