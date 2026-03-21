@@ -9,7 +9,7 @@ pipeline{
 
         stage('RUN'){
             steps{
-                timeout(time:15, unit:MINUTES){
+                timeout(time:15, unit:'MINUTES'){
                     sh '''terraform init
                           terradorm plan'''
                 }
@@ -18,7 +18,7 @@ pipeline{
 
         stage('APPROVAL'){
             steps{
-                timeout(time:15, unit:MINUTES){
+                timeout(time:15, unit:'MINUTES'){
                     input 'wait for approval'
                 }
             }
@@ -26,7 +26,7 @@ pipeline{
 
         stage('DEPLOY'){
             steps{
-                timeout(time:15, unit:MINUTES){
+                timeout(time:15, unit:'MINUTES'){
                     sh 'terraform apply --auto -approve'
                 }
             }
